@@ -1,0 +1,111 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jul 7, 2024, 8:31:28 AM
+    Author     : Administrator
+*/
+/* style.css */
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.footer {
+    background-color: #f7f7f7;
+}
+
+.carousel {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.carousel img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+.card {
+    border: none;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #888;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+}
+
+.fa {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.dropdown-menu {
+    background-color: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-divider {
+    background-color: #e5e5e5;
+    margin: 10px 0;
+}
+.dropdown-menu.dropdown-menu-left {
+    left: auto;
+    right: 0;
+}
+.table-responsive {
+    overflow-x: auto;
+}
+
+table th,
+table td {
+    text-align: center;
+}
+.table-container {
+    max-height: 530px;
+    overflow-y: auto;
+}
+.table {
+        position: relative;
+    }
+
+    .table thead {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
+
