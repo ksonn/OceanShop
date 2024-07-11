@@ -1,8 +1,3 @@
-<%-- 
-    Document   : manageUser
-    Created on : Jul 7, 2024, 2:14:31 PM
-    Author     : Administrator
---%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -53,12 +48,18 @@
         </header>
 
         <main class="container">
+            <div class="row" style="margin-top: 5px; margin-bottom: 5px">
+                <div>
+                    <a href="AddUser">
+                        <button class="btn btn-outline-success">Add User</button>
+                    </a>
+                </div>
+            </div>
             <form action="ManageUser" method="GET">
-                <div class="row" style="margin-top: 20px">
-
+                <div class="row">
                     <div class="col-md-6">
                         <div class="input-group mb-3">
-                            <input type="text" name="searchValue" class="form-control" value="${requestScope.searchValue}" placeholder="Search by name, email, or phone">
+                            <input type="text" name="searchValue" class="form-control" value="${requestScope.searchValue}" placeholder="Search by name, email"/>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit" id="searchButton">Search</button>
                             </div>
@@ -142,7 +143,7 @@
                                         <td>${u.role}</td>
                                         <td>
                                             <a href="profile?id=${u.idUser}">
-                                                <button class="btn btn-primary">Detail</button>
+                                                <button class="btn btn-outline-primary">Detail</button>
                                             </a>
                                         </td>
                                     </tr>
@@ -157,7 +158,6 @@
                     </table>
                 </div>
             </div>
-            <!--<div style="height: 10px"></div>-->
 
         </main>
 

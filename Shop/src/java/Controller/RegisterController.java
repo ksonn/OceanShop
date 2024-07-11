@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DTO.AddUserDTO;
+import DTO.UserDTO;
 import Dal.DAO.UserDAO;
 import Model.NguoiDung;
 import jakarta.servlet.ServletException;
@@ -74,7 +74,7 @@ public class RegisterController extends HttpServlet {
 
         if (logname != null && logemail != null && password != null) {
             ArrayList<NguoiDung> list = dao.getAllUser();
-            AddUserDTO user = new AddUserDTO();
+            UserDTO user = new UserDTO();
             user.setIdUser(String.valueOf(list.size() + 1));
             user.setEmail(logemail);
             user.setTenUser(logname);
@@ -102,7 +102,7 @@ public class RegisterController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private boolean checkExistInList(AddUserDTO user, ArrayList<NguoiDung> list) {
+    private boolean checkExistInList(UserDTO user, ArrayList<NguoiDung> list) {
         for (NguoiDung nguoiDung : list) {
             if (nguoiDung.getEmail().equalsIgnoreCase(user.getEmail())) {
                 return true;

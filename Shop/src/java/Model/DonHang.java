@@ -20,6 +20,7 @@ public class DonHang {
     private int tongSoLuong;
     private Date ngayBan;
     private int tongThanhTien;
+    private boolean isPay;
 
     public String getIdSanPham() {
         return idSanPham;
@@ -84,5 +85,14 @@ public class DonHang {
     public void setTongThanhTien(int tongThanhTien) {
         this.tongThanhTien = tongThanhTien;
     }
+
+    public boolean isIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(boolean isPay) {
+        this.isPay = isPay;
+    }
+    
     
 }

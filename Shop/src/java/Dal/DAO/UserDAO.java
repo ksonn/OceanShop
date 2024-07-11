@@ -5,7 +5,7 @@
  */
 package Dal.DAO;
 
-import DTO.AddUserDTO;
+import DTO.UserDTO;
 import Dal.DBContext;
 import Model.Admin;
 import Model.NguoiDung;
@@ -23,62 +23,63 @@ import java.util.logging.Logger;
  */
 public class UserDAO extends DBContext {
 
-    public ArrayList<AddUserDTO> getAllUserInSystem(String search, String gender, String roleSearch) {
-        ArrayList<AddUserDTO> listAll = new ArrayList<>();
+    public Set<UserDTO> getAllUserInSystem(String search, String gender, String roleSearch) {
+        Set<UserDTO> listAll = new HashSet<>();
+        String sql;
         try {
-            String sql = "SELECT * FROM [NguoiDung]";
+            if (roleSearch != null) {
+                sql = "SELECT u.[idUser]\n"
+                        + "      ,[TenUser]\n"
+                        + "      ,[GioiTinh]\n"
+                        + "      ,u.[Email]\n"
+                        + "      ,u.[MatKhau]\n"
+                        + "      ,[SDT]\n"
+                        + "	  ,a.[Role]\n"
+                        + "  FROM [NguoiDung] u join [ADMIN] a on u.idUser = a.idUser";
+            } else {
+                sql = "Select * From NguoiDung";
+            }
             ResultSet rs = rs(sql);
             while (rs.next()) {
-                AddUserDTO user = new AddUserDTO();
+                UserDTO user = new UserDTO();
                 user.setIdUser(rs.getString("idUser"));
                 user.setEmail(rs.getString("Email"));
                 user.setGioiTinh(rs.getString("GioiTinh"));
                 user.setMatKhau(rs.getString("MatKhau"));
                 user.setSdt(rs.getInt("SDT"));
                 user.setTenUser(rs.getString("TenUser"));
-                listAll.add(user);
-            }
-            rs = rs("SELECT * FROM [ADMIN]");
-            while (rs.next()) {
-                String id = rs.getString("idUser");
-                String role = rs.getString("Role");
-                for (AddUserDTO user : listAll) {
-                    if (user.getIdUser().equals(id)) {
-                        user.setRole(role);
-                    }
+                if (roleSearch != null) {
+                    user.setRole(rs.getString("Role"));
                 }
+                listAll.add(user);
             }
 
             if (search != null || gender != null || roleSearch != null) {
-                ArrayList<AddUserDTO> list = new ArrayList<>();
-                Set<String> ids = new HashSet<>();
-                for (AddUserDTO addUserDTO : listAll) {
+                search = search.trim();
+                Set<UserDTO> list = new HashSet<>();
+                for (UserDTO addUserDTO : listAll) {
 
-                    if (search != null
+                    if (search.length() > 0 && search != null
                             && (addUserDTO.getEmail().contains(search)
-                            || addUserDTO.getTenUser().contains(search))
-                            || addUserDTO.getSdt() == Integer.parseInt(search)) {
-                        if (!ids.contains(addUserDTO.getIdUser())) {
-                            ids.add(addUserDTO.getIdUser());
-                            list.add(addUserDTO);
-                        }
+                            || addUserDTO.getTenUser().contains(search))) {
+                        list.add(addUserDTO);
                     }
 
-                    if (gender != null && gender.equals(addUserDTO.getGioiTinh())) {
-                        if (!ids.contains(addUserDTO.getIdUser())) {
-                            ids.add(addUserDTO.getIdUser());
-                            list.add(addUserDTO);
-                        }
+                    if (gender != null && gender.length() > 0
+                            && gender.equals(addUserDTO.getGioiTinh())) {
+                        list.add(addUserDTO);
                     }
 
-                    if (roleSearch != null && roleSearch.equals(addUserDTO.getRole())) {
-                        if (!ids.contains(addUserDTO.getIdUser())) {
-                            ids.add(addUserDTO.getIdUser());
-                            list.add(addUserDTO);
-                        }
+                    if (roleSearch != null && roleSearch.length() > 0
+                            && roleSearch.equals(addUserDTO.getRole())) {
+                        list.add(addUserDTO);
                     }
                 }
-                return list;
+                if (list.isEmpty()) {
+                    return listAll;
+                } else {
+                    return list;
+                }
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -142,9 +143,9 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public AddUserDTO getUserWithAllObject(String userId) {
+    public UserDTO getUserWithAllObject(String userId) {
         try {
-            AddUserDTO u = new AddUserDTO();
+            UserDTO u = new UserDTO();
             String sql = "SELECT [idUser]\n"
                     + "      ,[TenUser]\n"
                     + "      ,[GioiTinh]\n"
@@ -201,7 +202,7 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void addUser(AddUserDTO user) {
+    public void addUser(UserDTO user) {
         try {
             if (user != null) {
                 if (user.getRole() != null) {
@@ -233,7 +234,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-    private void addNguoiDung(AddUserDTO acc) {
+    private void addNguoiDung(UserDTO acc) {
         try {
             String sql = "INSERT INTO [NguoiDung]\n"
                     + "           ([idUser]\n"
@@ -256,7 +257,7 @@ public class UserDAO extends DBContext {
             stm.setString(4, acc.getEmail());
             stm.setString(5, acc.getMatKhau());
             stm.setInt(6, acc.getSdt());
-            int executeUpdate = stm.executeUpdate();
+            stm.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -264,7 +265,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-    public void changePass(AddUserDTO acc) {
+    public void changePass(UserDTO acc) {
         String sql;
         try {
             if (acc.getRole() == null) {
@@ -294,7 +295,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-    public void changeProfile(AddUserDTO acc) {
+    public void changeProfile(UserDTO acc) {
         String sql;
         try {
             if (acc.getRole() == null) {
@@ -330,7 +331,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-    private void updateAdmin(AddUserDTO acc) {
+    private void updateAdmin(UserDTO acc) {
         try {
             String sql = "UPDATE [ADMIN]\n"
                     + "   SET [Role] = ?\n"

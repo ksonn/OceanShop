@@ -22,6 +22,25 @@ public class SanPham {
     private String mauSac;
     private String idPhanLoai;
 
+    public SanPham() {
+    }
+
+    public SanPham(String idSanPham, String tenSanPham, int tongSoLuong, int giaBanDau, int giaSanPham, String anhMinhHoa, String anhMoTa, String moTaSanPham, String thuongHieu, String mauSac, String idPhanLoai) {
+        this.idSanPham = idSanPham;
+        this.tenSanPham = tenSanPham;
+        this.tongSoLuong = tongSoLuong;
+        this.giaBanDau = giaBanDau;
+        this.giaSanPham = giaSanPham;
+        this.anhMinhHoa = anhMinhHoa;
+        this.anhMoTa = anhMoTa;
+        this.moTaSanPham = moTaSanPham;
+        this.thuongHieu = thuongHieu;
+        this.mauSac = mauSac;
+        this.idPhanLoai = idPhanLoai;
+    }
+    
+    
+    
     public String getIdSanPham() {
         return idSanPham;
     }

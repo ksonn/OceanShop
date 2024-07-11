@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DTO.AddUserDTO;
+import DTO.UserDTO;
 import Dal.DAO.UserDAO;
 import Model.Admin;
 import Model.NguoiDung;
@@ -56,7 +56,7 @@ public class ChangePass extends HttpServlet {
             if (pass.equals(repass)) {
                 if (pass.replaceAll("\\s+", "").length() > 6) {
                     Admin a = (Admin) hs.getAttribute("emp");
-                    AddUserDTO u = new AddUserDTO();
+                    UserDTO u = new UserDTO();
                     u.setIdUser(user.getIdUser());
                     u.setMatKhau(pass);
                     if (a != null) {

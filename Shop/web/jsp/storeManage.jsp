@@ -71,7 +71,7 @@
                     <div class="card mb-6 shadow-sm">
                         <img style="width: 350px" src="./lib/img/khohang.png" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ManageProduct" class="link-info">
                                 <h5 class="card-title">Quản Lí Kho</h5>
                             </a>
                         </div>

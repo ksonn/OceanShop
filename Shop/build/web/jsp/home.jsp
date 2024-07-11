@@ -1,11 +1,7 @@
-<%-- 
-    Document   : newjsp
-    Created on : Jul 7, 2024, 8:29:55 AM
-    Author     : Administrator
---%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,9 +21,6 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sản phẩm</a>
-                    </li>
                     <c:if test="${sessionScope.emp.role != null}">
                         <li class="nav-item">
                             <a class="nav-link" href="manage">Quản Lý</a>
@@ -36,10 +29,10 @@
                     <c:if test="${sessionScope.user != null}">
                         <c:if test="${sessionScope.emp.role == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Hoá Đơn</a>
+                                <a class="nav-link" href="ListHoaDon?uid=${sessionScope.user.idUser}">Hoá Đơn</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Giỏ Hàng</a>
+                                <a class="nav-link" href="ListCard?uid=${sessionScope.user.idUser}">Giỏ Hàng</a>
                             </li>
                         </c:if>
                         <li class="nav-item dropdown dropstart">
@@ -82,7 +75,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/tiviCate.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=1" class="link-info">
                                 <h5 class="card-title">Tivi</h5>
                             </a>
                         </div>
@@ -92,7 +85,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/tuLanh.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=2" class="link-info">
                                 <h5 class="card-title">Tủ Lạnh</h5>
                             </a>
                         </div>
@@ -102,7 +95,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/Loa.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=3" class="link-info">
                                 <h5 class="card-title">Loa</h5>
                             </a>
                         </div>
@@ -112,7 +105,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/mayGiat.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=4" class="link-info">
                                 <h5 class="card-title">Máy Giặt</h5>
                             </a>
                         </div>
@@ -122,7 +115,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/noiCom.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=5" class="link-info">
                                 <h5 class="card-title">Nồi Cơm Điện</h5>
                             </a>
                         </div>
@@ -132,7 +125,7 @@
                     <div class="card mb-4 shadow-sm">
                         <img src="./lib/img/dieuHoa.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <a href="#" class="link-info">
+                            <a href="ShoppingArea?category=6" class="link-info">
                                 <h5 class="card-title">Máy Lạnh</h5>
                             </a>
                         </div>
@@ -142,48 +135,33 @@
             </div>
 
             <h2>Sản phẩm bán chạy</h2>
+            <c:if test="${requestScope.bestSellers != null}">
+                <div class="row">
+                    <c:forEach items="${requestScope.bestSellers}" var="p">
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="./lib/img/Phong-khach-chuyen-sau-01.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Hello</h5>
-                            <p class="card-text">Giá: 100000 VNĐ</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
-                                <i class="fa fa-heart"></i>
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img src="${p.sanPham.anhMinhHoa}" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">${p.sanPham.tenSanPham}</h5>
+                                    <p class="card-text">Giá: 
+                                        <fmt:formatNumber value="${p.sanPham.giaSanPham}" type="currency" currencySymbol="VND"/>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="ViewProduct?id=${p.idSanPham}" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="./lib/img/Phong-khach-chuyen-sau-01.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Hello</h5>
-                            <p class="card-text">Giá: 100000 VNĐ</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
-                                <i class="fa fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="./lib/img/Phong-khach-chuyen-sau-01.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Hello</h5>
-                            <p class="card-text">Giá: 100000 VNĐ</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
-                                <i class="fa fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:if>
+            <c:if test="${requestScope.bestSellers == null}">
+                <span>
+                    <h3>Không Có Sản Phẩm Để Hiển Thị</h3>
+                </span>
+            </c:if>
         </main>
 
         <footer class="footer mt-auto py-3 bg-light">

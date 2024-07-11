@@ -1,8 +1,4 @@
-<%-- 
-    Document   : profile
-    Created on : Jul 7, 2024, 11:00:14 AM
-    Author     : Administrator
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -64,7 +60,7 @@
                                                         <%-- neu role cua profile can xem khong null thi hien thi --%>
                                                         <c:if test="${requestScope.user.role ne null}">
                                                             <%-- neu role cua acc dang nhap la admin thi hien thi --%>
-                                                            <c:if test="${sessionScope.user.role eq 'Admin'}">
+                                                            <c:if test="${sessionScope.emp.role eq 'Admin'}">
                                                                 
                                                                 <%-- admin thi duoc chinh sua role --%>
                                                                 
@@ -83,7 +79,7 @@
                                                                 
                                                             </c:if>
                                                             <%-- neu role cua acc dang nhap ko phai admin thi hien thi --%>
-                                                            <c:if test="${sessionScope.user.role ne 'Admin'}">
+                                                            <c:if test="${sessionScope.emp.role ne 'Admin'}">
                                                                 
                                                                 <%-- emp thi ko duoc chinh sua role --%>
                                                                 
@@ -116,17 +112,5 @@
                 </div>
             </div>
         </div>
-        <script>
-            const checkbox = document.getElementById('customCheckbox');
-            const customCheckbox = document.querySelector('.custom-checkbox');
-
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    customCheckbox.classList.add('checked');
-                } else {
-                    customCheckbox.classList.remove('checked');
-                }
-            });
-        </script>
     </body>
 </html>

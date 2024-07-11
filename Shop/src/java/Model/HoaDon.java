@@ -17,6 +17,7 @@ public class HoaDon {
     private int soLuong;
     private int giaTien;
     private int thanhTien;
+    private boolean isPay;
 
     public String getIdHoaDon() {
         return idHoaDon;
@@ -73,5 +74,14 @@ public class HoaDon {
     public void setThanhTien(int thanhTien) {
         this.thanhTien = thanhTien;
     }
+
+    public boolean isIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(boolean isPay) {
+        this.isPay = isPay;
+    }
+    
     
 }

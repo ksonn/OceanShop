@@ -32,6 +32,54 @@
         <servlet-name>ManageUser</servlet-name>
         <servlet-class>Controller.ManageUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageProduct</servlet-name>
+        <servlet-class>Controller.ManageProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>Controller.addProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProduct</servlet-name>
+        <servlet-class>Controller.ViewProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>Controller.AddUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProduct</servlet-name>
+        <servlet-class>Controller.DeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShoppingArea</servlet-name>
+        <servlet-class>Controller.ShoppingArea</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>Controller.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListCard</servlet-name>
+        <servlet-class>Controller.ListCard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddHoaDon</servlet-name>
+        <servlet-class>Controller.AddHoaDon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmPay</servlet-name>
+        <servlet-class>Controller.ConfirmPay</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListHoaDon</servlet-name>
+        <servlet-class>Controller.ListHoaDon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCard</servlet-name>
+        <servlet-class>Controller.DeleteCard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -63,6 +111,54 @@
     <servlet-mapping>
         <servlet-name>ManageUser</servlet-name>
         <url-pattern>/ManageUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageProduct</servlet-name>
+        <url-pattern>/ManageProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProduct</servlet-name>
+        <url-pattern>/ViewProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/AddUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProduct</servlet-name>
+        <url-pattern>/DeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingArea</servlet-name>
+        <url-pattern>/ShoppingArea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCard</servlet-name>
+        <url-pattern>/ListCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddHoaDon</servlet-name>
+        <url-pattern>/AddHoaDon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmPay</servlet-name>
+        <url-pattern>/ConfirmPay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListHoaDon</servlet-name>
+        <url-pattern>/ListHoaDon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCard</servlet-name>
+        <url-pattern>/DeleteCard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

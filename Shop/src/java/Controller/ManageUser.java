@@ -4,21 +4,25 @@
  */
 package Controller;
 
-import DTO.AddUserDTO;
+import DTO.UserDTO;
 import Dal.DAO.UserDAO;
+import Model.Admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Set;
 
 /**
  *
  * @author Administrator
  */
 public class ManageUser extends HttpServlet {
+
     UserDAO dao = new UserDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,20 +34,27 @@ public class ManageUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String searchValue = request.getParameter("searchValue");
-        String gender = request.getParameter("gender");
-        String role = request.getParameter("role");
-        
-        searchValue = (searchValue == null || searchValue.length() == 0)?null:searchValue;
-        gender = (gender == null || gender.length() == 0)?null:gender;
-        role = (role == null || role.length() == 0)?null:role;
-        
-        ArrayList<AddUserDTO> list = dao.getAllUserInSystem(searchValue,gender,role);
-        request.setAttribute("list", list);
-        request.setAttribute("searchValue", searchValue);
-        request.setAttribute("gender", gender);
-        request.setAttribute("role", role);
-        request.getRequestDispatcher("jsp/manageUser.jsp").forward(request, response);
+        HttpSession hs = request.getSession();
+        Admin a = (Admin) hs.getAttribute("emp");
+        if (a != null) {
+            String searchValue = request.getParameter("searchValue");
+            String gender = request.getParameter("gender");
+            String role = request.getParameter("role");
+
+            searchValue = (searchValue == null || searchValue.length() == 0) ? " " : searchValue;
+            gender = (gender == null || gender.length() == 0) ? null : gender;
+            role = (role == null || role.length() == 0) ? null : role;
+            Set<UserDTO> list = dao.getAllUserInSystem(searchValue, gender, role);
+            
+            
+            request.setAttribute("list", list);
+            request.setAttribute("searchValue", searchValue);
+            request.setAttribute("gender", gender);
+            request.setAttribute("role", role);
+            request.getRequestDispatcher("jsp/manageUser.jsp").forward(request, response);
+        } else{
+            response.getWriter().print("Access Denied");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

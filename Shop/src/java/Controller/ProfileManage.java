@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import DTO.AddUserDTO;
+import DTO.UserDTO;
 import Dal.DAO.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -32,7 +32,7 @@ public class ProfileManage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-        AddUserDTO user = dao.getUserWithAllObject(id);
+        UserDTO user = dao.getUserWithAllObject(id);
         request.setAttribute("user", user);
         request.getRequestDispatcher("jsp/profile.jsp").forward(request, response);
     }
@@ -54,7 +54,7 @@ public class ProfileManage extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String admin = request.getParameter("isAdmin");
-        AddUserDTO user = new AddUserDTO();
+        UserDTO user = new UserDTO();
         user.setIdUser(id);
         user.setEmail(email);
         user.setGioiTinh((gender == null || gender.length() == 0) ? "" : gender);
